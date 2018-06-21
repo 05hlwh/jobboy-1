@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<link rel="shortcut icon" href="favicon.ico">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>西农学生兼职平台</title>
+
+	<link href="../../resources/css/wstyle.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="../../resources/css/layui.css" media="all">
+	<link href="../../resources/css/style.css" rel="stylesheet" type="text/css" />
+	<link href="../../resources/css/style_index.css" rel="stylesheet" type="text/css" />
+
+	<script src="../../resources/js/jquery-1.9.1.min.js"></script>
+	<!-- <script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script> -->
+	<!-- <script src="js/common.js"></script> -->
+	<script type="text/javascript" src="../../resources/js/parallax.js"></script>
+	<script type="text/javascript" src="../../resources/js/jquery.SuperSlide.2.1.1.js"></script>
+	<script type="text/javascript" src="../js/jquery.min.js"></script>
+	<!--[if IE 6]><script type="text/javascript" src="js/DD_belatedPNG.js"></script><![endif]-->
+<!--[if IE 6]>
+<script type="text/javascript">
+ DD_belatedPNG.fix("img");
+</script>
+<![endif]-->
+<!-- 选项卡 -->
+
+<script type="text/javascript">
+	$(function(){
+		/**软件功能切换js**/
+		$(".soft_con_icon ul li a").mouseover(function(){
+			var id = $(this).attr("id");
+			var x=$(this).parent().index();
+			$(this).children("p").css({"color":"#008dd9"}).parent().parent().siblings().children().children("p").css({"color":"#333333"});
+			var src1=id+"_hover.gif"
+			$(".soft_con_icon ul li a").each(function(index, element) {
+				var other_id = $(this).attr("id");
+				if(id == other_id){
+					$(this).children("img").attr("src","../img/"+src1);
+				}else{
+					var src2 = other_id+".gif";
+					$(this).children("img").attr("src","../img/"+src2);
+				}
+			});
+			if(x==0){
+				$("#xzgl").css({"display":"block"}).siblings().css({"display":"none"});
+				$(".soft_con1").css({"background":" url(../img/line_select_001.gif)"});
+			}else if(x==1){
+				$("#crm").css({"display":"block"}).siblings().css({"display":"none"});
+				$(".soft_con1").css({"background":"url(../img/line_select_002.gif)"});
+			}else if(x==2){
+				$("#xmgl").css({"display":"block"}).siblings().css({"display":"none"});
+				$(".soft_con1").css({"background":"url(../img/line_select_003.gif)"});
+			}else if(x==3){
+				$("#zsgl").css({"display":"block"}).siblings().css({"display":"none"});
+				$(".soft_con1").css({"background":"url(../img/line_select_004.gif)"});
+			}else{
+				$("#ydbg").css({"display":"block"}).siblings().css({"display":"none"});
+				$(".soft_con1").css({"background":"url(../img/line_select_005.gif)"});
+			}
+		});
+
+	});
+</script>
+<!-- 搜索 -->
+<style>
+	*{margin:0;padding:0;list-style:none;}
+	.search-form{width:575px;margin:10px auto;overflow: hidden;}
+	.search-form .search-bd{height: 25px;}
+	.search-form .search-bd li{font-size:16px;width:60px;height: 25px;line-height: 25px;text-align:center;float: left;cursor: pointer;background-color: #eee;color: #666;}
+	.search-form .search-bd li.selected{color: #fff;font-weight: 700;background-color: #29bf25;}
+	.search-form .search-hd{height:40px;background-color: #29bf25;padding: 3px;position: relative;}
+	.search-form .search-hd .search-input{width: 490px;height: 22px;line-height: 22px;padding: 6px 0;background: none;text-indent: 10px;border: 0;outline: none;position: relative;left: 3px;top: 0;z-index: 5;#margin-left:-10px;}
+	.search-form .search-hd .btn-search{width: 70px;height: 40px;line-height:40px;position: absolute;right: 3px;top: 3px;border: 0;z-index: 6;cursor: pointer;font-size: 16px;color: #fff;font-weight: 700;background: none;outline: none;}
+	.search-form .search-hd .pholder{display: inline-block;padding: 2px 0;font-size: 14px;color: #999;position: absolute;left: 13px;top: 11px;z-index: 4;background: url(../../resources/images/zoom.jpg) no-repeat 0 0;padding-left:25px;#top:11px;}
+	.search-form .search-hd .s2,.search-form .search-hd #s2{display: none;}
+	.search-form .search-bg{width: 495px;height: 40px;background-color: #fff;position: absolute;left: 3px;top: 3px;z-index: 1;}
+</style>
+</head>
+<body>
+	<div style="height: 80px;"></div>
+	<div class="wrapHeader">
+		<div class="header" style="background-color: #696969">
+			<h1 class="logo"><a href="index.html"><img src="../../resources/img/logo1.png" style="height: 60px;margin-left:200px "/></a></h1>
+			<ul class="nav">
+				<li><a href="index.html">首页</a></li>
+				<li><a href="work.html">求职/招聘</a></li>
+				<li><a href="javascript:void(0)">投诉/举报</a></li>
+			</ul>
+		</div>
+	</div>
+	<!-- 搜索 -->
+	<div class="search-form">
+		<div id="search-bd" class="search-bd">
+			<ul>
+				<li class="selected">找兼职</li>
+				<li>找企业</li>
+			</ul>
+		</div>
+		<div id="search-hd" class="search-hd">
+			<div class="search-bg"></div>
+			<input type="text" id="s1" class="search-input">
+			<input type="text" id="s2" class="search-input">
+			<span class="s1 pholder">搜职位名称</span>
+			<span class="s2 pholder">搜企业名称</span>
+			<button id="submit" class="btn-search" value="搜索">搜索</button>
+		</div>
+	</div>
+	<!-- <script type="text/javascript" src="../js/jquery.min.js"></script> -->
+	<script type="text/javascript">
+		$(function(){
+		//通用头部搜索切换
+		$('#search-hd .search-input').on('input propertychange',function(){
+			var val = $(this).val();
+			if(val.length > 0){
+				$('#search-hd .pholder').hide(0);
+			}else{
+				var index = $('#search-bd li.selected').index();
+				$('#search-hd .pholder').eq(index).show().siblings('.pholder').hide(0);
+			}
+		})
+		$('#search-bd li').click(function(){
+			var index = $(this).index();
+			$('#search-hd .pholder').eq(index).show().siblings('.pholder').hide(0);
+			$('#search-hd .search-input').eq(index).show().siblings('.search-input').hide(0);
+			$(this).addClass('selected').siblings().removeClass('selected');
+			$('#search-hd .search-input').val('');
+		});
+	})
+</script>
+<!-- 标签 -->
+<div class="panel">
+	<ul>
+		<li>
+			<a href="javascript:void(0)" class="tag">
+				<span class="tag_name">取快递</span>
+				<span class="tag_count">17</span>
+			</a>
+		</li>
+		<li>
+			<a href="javascript:void(0)" class="tag">
+				<span class="tag_name">送外卖</span>
+				<span class="tag_count">12</span>
+			</a>
+		</li>
+		<li>
+			<a href="javascript:void(0)" class="tag">
+				<span class="tag_name">卖水票</span>
+				<span class="tag_count">15</span>
+			</a>
+		</li>
+		<li>
+			<a href="javascript:void(0)" class="tag">
+				<span class="tag_name">传单派发</span>
+				<span class="tag_count">27</span>
+			</a>
+		</li>
+		<li>
+			<a href="javascript:void(0)" class="tag">
+				<span class="tag_name">搬书</span>
+				<span class="tag_count">11</span>
+			</a>
+		</li>
+		<li>
+			<a href="javascript:void(0)" class="tag">
+				<span class="tag_name">礼仪模特</span>
+				<span class="tag_count">34</span>
+			</a>
+		</li>
+		<li>
+			<a href="javascript:void(0)" class="tag">
+				<span class="tag_name">陪跑</span>
+				<span class="tag_count">72</span>
+			</a>
+		</li>
+		<li>
+			<a href="javascript:void(0)" class="tag">
+				<span class="tag_name">学生家教</span>
+				<span class="tag_count">11</span>
+			</a>
+		</li>
+		<li>
+			<a href="javascript:void(0)" class="tag">
+				<span class="tag_name">校园代理</span>
+				<span class="tag_count">7</span>
+			</a>
+		</li>
+	</ul>
+</div>
+
+<script type="text/javascript" src="../../resources/js/jquery.easing.1.3.js"></script>
+<script type="text/javascript">
+	$(window).load(function() {
+
+		$('.tag').each(function(i) {
+			setTimeout(function() {
+				$('.tag:eq('+i+')').css({ display: 'block', opacity: 0 }).stop().animate({ opacity: 1 }, 'easeInOutExpo'); 
+			}, 250 * (i + 1))
+		});
+
+		$('.tag').hover(function() {
+			$(this).stop().animate({ paddingRight: ($('.tag_count', this).outerWidth() - 5) }, 'easeInOutExpo');
+		}, function() {
+			$(this).stop().animate({ paddingRight: 5 }, 'easeInOutExpo');
+		});
+
+	});
+</script>
+<!-- 选项卡 -->
+<script type="text/javascript">
+	$(function(){
+		var tabNum=$(".important").find("li");
+		var contentNum=$(".contents").children();
+		var timer;
+		$(tabNum).each(function(index){
+			$(this).hover(function(){
+				var that=$(this)
+				timer=window.setTimeout(function(){
+					$(contentNum).eq(index).css({"display":"block"});
+					$(contentNum).eq(index).siblings().css({"display":"none"});
+					that.find("a").css({"background":"#FFF","color":"#fff"});
+					that.find("strong").show();
+					that.siblings().find("strong").hide();
+					that.siblings().find("a").css({"background":"#fff","color":"black"});
+				},100)
+			},function(){
+				window.clearTimeout(timer);
+			})
+		})
+	})
+</script>
+
+<div class="w1200">
+	<ul class="important cl">
+		<li class="rcsp_1">
+			<a><span></span></a>
+			<p>简单易做</p>
+			<strong><i></i></strong>
+		</li>
+		<li class="rcsp_2">
+			<a><span></span></a>
+			<p>跑腿办事</p>
+			<strong style="display:none"><i></i></strong>
+		</li>
+		<li class="rcsp_3">
+			<a><span></span></a>
+			<p>室内推荐</p>
+			<strong style="display:none"><i></i></strong>
+		</li>
+		<li class="rcsp_4">
+			<a><span></span></a>
+			<p>特色职位</p>
+			<strong style="display:none"><i></i></strong>
+		</li>
+		<li class="rcsp_5">
+			<a><span></span></a>
+			<p>专业技能</p>
+			<strong style="display:none"><i></i></strong>
+		</li>
+		<li class="rcsp_6">
+			<a><span></span></a>
+			<p>演艺达人</p>
+			<strong style="display:none"><i></i></strong>
+		</li>
+		<li class="rcsp_7">
+			<a><span></span></a>
+			<p>优秀青年</p>
+			<strong style="display:none"><i></i></strong>
+		</li>
+		<li class="rcsp_8">
+			<a><span></span></a>
+			<p>体力达人</p>
+			<strong style="display:none"><i></i></strong>
+		</li>
+		<li class="rcsp_9">
+			<a><span></span></a>
+			<p>其它</p>
+			<strong style="display:none"><i></i></strong>
+		</li>
+
+	</ul>
+	<div class="contents">
+		<div class="cl">
+			<div class="important_l" >
+				<label>派发传单</label>&nbsp;<label>问卷调查</label>
+			</div>
+		</div>
+		<div class="cl" style="display: none">
+			<div class="important_l">
+				<label>挂号排队</label>&nbsp;<label>送餐员</label>
+			</div>
+		</div>
+		<div class="cl" style="display: none">
+			<div class="important_l">
+				<label>话务客户</label>&nbsp;<label>促销导员</label>
+			</div>
+		</div>
+		<div class="cl" style="display: none">
+			<div class="important_l">
+				<label>校园代理</label>&nbsp;<label>家教助教</label>&nbsp;<label>婚礼主持</label>
+			</div>
+		</div>			
+		<div class="cl" style="display: none">
+			<div class="important_l">
+				<label>销售</label>&nbsp;<label>在线老师</label></div>
+			</div>			
+			<div class="cl" style="display: none">
+				<div class="important_l">
+					<label>礼仪模特</label>&nbsp;<label>群众演员</label></div>
+				</div>
+				<div class="cl" style="display: none">
+					<div class="important_l">
+						<label>实习生</label>&nbsp;<label>社会义工</label></div>
+					</div>	
+					<div class="cl" style="display: none">
+						<div class="important_l">
+							<label>快递配送</label>&nbsp;<label>服务员</label></div>
+						</div>		
+						<div class="cl" style="display: none">
+							<div class="important_l">			
+								<label>临时工</label>&nbsp;<label>其它</label></div>
+							</div>		
+
+						</div>
+					</div>
+					<!-- <div class="top-nav"> 
+						<div class="top-nav-width clearfix1"> 
+							<dl class="tnLeft"> 
+								<dd>
+									<h3><a href="#">设为首页</a></h3>
+								</dd> 
+								<dd> 
+									<h3><a href="#">我的菜单<i></i></a></h3> 
+									<ul> 
+										<li><a href="#">新闻</a></li> 
+										<li><a href="#">电视视频</a></li> 
+										<li><a href="#">电影</a></li> 
+										<li><a href="#">明星</a></li> 
+										<li><a href="#">国内</a></li> 
+									</ul> 
+								</dd> 
+								<dd>
+									<h3><a href="#">手机新浪网</a></h3>
+								</dd> 
+								<dd> 
+									<h3><a href="#">移动客户端<i></i></a></h3> 
+									<ul> 
+										<li><a href="#">新浪微博</a></li> 
+										<li><a href="#">新浪新闻</a></li> 
+										<li><a href="#">新浪体育</a></li> 
+										<li><a href="#">新浪拍客</a></li> 
+										<li><a href="#">天气通</a></li> 
+									</ul> 
+								</dd> 
+							</dl> 
+						</div>
+					</div>
+					<script type="text/javascript">jQuery(".top-nav").slide({ type:"menu",  titCell:"dd", targetCell:"ul", delayTime:0,defaultPlay:false,returnDefault:true  });	
+					</script>  -->
+
+					<ul class="hot_pos reset" style="margin-left: 18%">
+						<li class="odd clearfix">
+							<div class="hot_pos_l">
+								<div class="mb10">
+									<a href="h/jobs/129304.html" title="前端开发" target="_blank">前端开发</a> 
+									&nbsp;
+									<span class="c9">[上海]</span>
+								</div>
+								<span><em class="c7">月薪：</em>7k-14k</span>
+								<span><em class="c7">经验：</em> 1-3年</span>
+								<span><em class="c7">最低学历： </em>大专</span>
+								<br />
+								<span><em class="c7">职位诱惑：</em>全新的外贸业务开发模式，等你一起来创造！</span>
+								<br />
+								<span>一天前发布</span>
+							</div> 
+							<div class="hot_pos_r">
+								<div class="apply">
+									<a href="toudi.html" target="_blank">投个简历</a>
+								</div>
+								<div class="mb10"><a href="h/c/6922.html" title="快车道数据科技" target="_blank">快车道数据科技</a></div>
+								<span><em class="c7">领域： </em>云计算\大数据,分类信息</span>
+								<span><em class="c7">创始人：</em> 晋圣前</span>
+								<br />
+								<span><em class="c7">阶段： </em>初创型(天使轮)</span>
+								<span><em class="c7">规模： </em>少于15人</span>
+								<ul class="companyTags reset">
+									<li>领导好</li>
+									<li>扁平管理</li>
+									<li>股票期权</li>
+								</ul>
+							</div>
+						</li>
+					</ul>
+					<div class="top-nav"> 
+						<div class="top-nav-width clearfix1"> 
+							<dl class="tnLeft"> 
+								<dd>
+									<h3><a href="#">设为首页</a></h3>
+								</dd> 
+								<dd> 
+									<h3><a href="#">我的菜单<i></i></a></h3> 
+									<ul> 
+										<li><a href="#">新闻</a></li> 
+										<li><a href="#">电视视频</a></li> 
+										<li><a href="#">电影</a></li> 
+										<li><a href="#">明星</a></li> 
+										<li><a href="#">国内</a></li> 
+									</ul> 
+								</dd> 
+								<dd>
+									<h3><a href="#">手机新浪网</a></h3>
+								</dd> 
+								<dd> 
+									<h3><a href="#">移动客户端<i></i></a></h3> 
+									<ul> 
+										<li><a href="#">新浪微博</a></li> 
+										<li><a href="#">新浪新闻</a></li> 
+										<li><a href="#">新浪体育</a></li> 
+										<li><a href="#">新浪拍客</a></li> 
+										<li><a href="#">天气通</a></li> 
+									</ul> 
+								</dd> 
+							</dl> 
+						</div>
+					</div>
+					<script type="text/javascript">jQuery(".top-nav").slide({ type:"menu",  titCell:"dd", targetCell:"ul", delayTime:0,defaultPlay:true,returnDefault:true  });	
+					</script>
+				</body>

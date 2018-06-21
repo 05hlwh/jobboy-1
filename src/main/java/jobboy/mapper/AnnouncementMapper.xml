@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jobboy.mapper.AnnouncementMapper">
+  <resultMap id="BaseResultMap" type="jobboy.po.Announcement">
+    <constructor>
+      <idArg column="an_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ad_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="an_time" javaType="java.util.Date" jdbcType="DATE" />
+      <arg column="an_content" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    an_id, ad_id, an_time, an_content
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from announcement
+    where an_id = #{anId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from announcement
+    where an_id = #{anId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="jobboy.po.Announcement">
+    insert into announcement (an_id, ad_id, an_time, 
+      an_content)
+    values (#{anId,jdbcType=INTEGER}, #{adId,jdbcType=INTEGER}, #{anTime,jdbcType=DATE}, 
+      #{anContent,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="jobboy.po.Announcement">
+    insert into announcement
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="anId != null">
+        an_id,
+      </if>
+      <if test="adId != null">
+        ad_id,
+      </if>
+      <if test="anTime != null">
+        an_time,
+      </if>
+      <if test="anContent != null">
+        an_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="anId != null">
+        #{anId,jdbcType=INTEGER},
+      </if>
+      <if test="adId != null">
+        #{adId,jdbcType=INTEGER},
+      </if>
+      <if test="anTime != null">
+        #{anTime,jdbcType=DATE},
+      </if>
+      <if test="anContent != null">
+        #{anContent,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="jobboy.po.Announcement">
+    update announcement
+    <set>
+      <if test="adId != null">
+        ad_id = #{adId,jdbcType=INTEGER},
+      </if>
+      <if test="anTime != null">
+        an_time = #{anTime,jdbcType=DATE},
+      </if>
+      <if test="anContent != null">
+        an_content = #{anContent,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where an_id = #{anId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="jobboy.po.Announcement">
+    update announcement
+    set ad_id = #{adId,jdbcType=INTEGER},
+      an_time = #{anTime,jdbcType=DATE},
+      an_content = #{anContent,jdbcType=VARCHAR}
+    where an_id = #{anId,jdbcType=INTEGER}
+  </update>
+</mapper>

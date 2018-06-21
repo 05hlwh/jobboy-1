@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jobboy.mapper.JobMapper">
+  <resultMap id="BaseResultMap" type="jobboy.po.Job">
+    <constructor>
+      <idArg column="jb_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="jb_do_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="jb_creat_time" javaType="java.util.Date" jdbcType="DATE" />
+      <arg column="jb_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="jb_type" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="jb_time" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="jb_sl_range" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="jb_describe" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="jb_remarks" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="jb_adress" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="jb_st_ac" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="jb_gad_request" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="jb_re_num" javaType="java.lang.Integer" jdbcType="INTEGER" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    jb_id, jb_do_id, jb_creat_time, jb_name, jb_type, jb_time, jb_sl_range, jb_describe, 
+    jb_remarks, jb_adress, jb_st_ac, jb_gad_request, jb_re_num
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from job
+    where jb_id = #{jbId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from job
+    where jb_id = #{jbId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="jobboy.po.Job">
+    insert into job (jb_id, jb_do_id, jb_creat_time, 
+      jb_name, jb_type, jb_time, 
+      jb_sl_range, jb_describe, jb_remarks, 
+      jb_adress, jb_st_ac, jb_gad_request, 
+      jb_re_num)
+    values (#{jbId,jdbcType=INTEGER}, #{jbDoId,jdbcType=INTEGER}, #{jbCreatTime,jdbcType=DATE}, 
+      #{jbName,jdbcType=VARCHAR}, #{jbType,jdbcType=VARCHAR}, #{jbTime,jdbcType=VARCHAR}, 
+      #{jbSlRange,jdbcType=VARCHAR}, #{jbDescribe,jdbcType=VARCHAR}, #{jbRemarks,jdbcType=VARCHAR}, 
+      #{jbAdress,jdbcType=VARCHAR}, #{jbStAc,jdbcType=VARCHAR}, #{jbGadRequest,jdbcType=VARCHAR}, 
+      #{jbReNum,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="jobboy.po.Job">
+    insert into job
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="jbId != null">
+        jb_id,
+      </if>
+      <if test="jbDoId != null">
+        jb_do_id,
+      </if>
+      <if test="jbCreatTime != null">
+        jb_creat_time,
+      </if>
+      <if test="jbName != null">
+        jb_name,
+      </if>
+      <if test="jbType != null">
+        jb_type,
+      </if>
+      <if test="jbTime != null">
+        jb_time,
+      </if>
+      <if test="jbSlRange != null">
+        jb_sl_range,
+      </if>
+      <if test="jbDescribe != null">
+        jb_describe,
+      </if>
+      <if test="jbRemarks != null">
+        jb_remarks,
+      </if>
+      <if test="jbAdress != null">
+        jb_adress,
+      </if>
+      <if test="jbStAc != null">
+        jb_st_ac,
+      </if>
+      <if test="jbGadRequest != null">
+        jb_gad_request,
+      </if>
+      <if test="jbReNum != null">
+        jb_re_num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="jbId != null">
+        #{jbId,jdbcType=INTEGER},
+      </if>
+      <if test="jbDoId != null">
+        #{jbDoId,jdbcType=INTEGER},
+      </if>
+      <if test="jbCreatTime != null">
+        #{jbCreatTime,jdbcType=DATE},
+      </if>
+      <if test="jbName != null">
+        #{jbName,jdbcType=VARCHAR},
+      </if>
+      <if test="jbType != null">
+        #{jbType,jdbcType=VARCHAR},
+      </if>
+      <if test="jbTime != null">
+        #{jbTime,jdbcType=VARCHAR},
+      </if>
+      <if test="jbSlRange != null">
+        #{jbSlRange,jdbcType=VARCHAR},
+      </if>
+      <if test="jbDescribe != null">
+        #{jbDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="jbRemarks != null">
+        #{jbRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="jbAdress != null">
+        #{jbAdress,jdbcType=VARCHAR},
+      </if>
+      <if test="jbStAc != null">
+        #{jbStAc,jdbcType=VARCHAR},
+      </if>
+      <if test="jbGadRequest != null">
+        #{jbGadRequest,jdbcType=VARCHAR},
+      </if>
+      <if test="jbReNum != null">
+        #{jbReNum,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="jobboy.po.Job">
+    update job
+    <set>
+      <if test="jbDoId != null">
+        jb_do_id = #{jbDoId,jdbcType=INTEGER},
+      </if>
+      <if test="jbCreatTime != null">
+        jb_creat_time = #{jbCreatTime,jdbcType=DATE},
+      </if>
+      <if test="jbName != null">
+        jb_name = #{jbName,jdbcType=VARCHAR},
+      </if>
+      <if test="jbType != null">
+        jb_type = #{jbType,jdbcType=VARCHAR},
+      </if>
+      <if test="jbTime != null">
+        jb_time = #{jbTime,jdbcType=VARCHAR},
+      </if>
+      <if test="jbSlRange != null">
+        jb_sl_range = #{jbSlRange,jdbcType=VARCHAR},
+      </if>
+      <if test="jbDescribe != null">
+        jb_describe = #{jbDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="jbRemarks != null">
+        jb_remarks = #{jbRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="jbAdress != null">
+        jb_adress = #{jbAdress,jdbcType=VARCHAR},
+      </if>
+      <if test="jbStAc != null">
+        jb_st_ac = #{jbStAc,jdbcType=VARCHAR},
+      </if>
+      <if test="jbGadRequest != null">
+        jb_gad_request = #{jbGadRequest,jdbcType=VARCHAR},
+      </if>
+      <if test="jbReNum != null">
+        jb_re_num = #{jbReNum,jdbcType=INTEGER},
+      </if>
+    </set>
+    where jb_id = #{jbId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="jobboy.po.Job">
+    update job
+    set jb_do_id = #{jbDoId,jdbcType=INTEGER},
+      jb_creat_time = #{jbCreatTime,jdbcType=DATE},
+      jb_name = #{jbName,jdbcType=VARCHAR},
+      jb_type = #{jbType,jdbcType=VARCHAR},
+      jb_time = #{jbTime,jdbcType=VARCHAR},
+      jb_sl_range = #{jbSlRange,jdbcType=VARCHAR},
+      jb_describe = #{jbDescribe,jdbcType=VARCHAR},
+      jb_remarks = #{jbRemarks,jdbcType=VARCHAR},
+      jb_adress = #{jbAdress,jdbcType=VARCHAR},
+      jb_st_ac = #{jbStAc,jdbcType=VARCHAR},
+      jb_gad_request = #{jbGadRequest,jdbcType=VARCHAR},
+      jb_re_num = #{jbReNum,jdbcType=INTEGER}
+    where jb_id = #{jbId,jdbcType=INTEGER}
+  </update>
+</mapper>

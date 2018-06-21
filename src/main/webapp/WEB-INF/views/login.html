@@ -1,0 +1,146 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http:www.thymeleaf.org"
+>
+<head>
+	<meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title>用户普通登录和手机登录界面模板</title>    
+    <link rel="stylesheet" type="text/css" href="../../resources/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="../../resources/css/jigsaw.css" />
+    <script type="text/javascript" src="../../resources/js/jquery-1.9.1.min.js"></script>
+    <!-- 新增登录 -->
+    <link rel="stylesheet" type="text/css" href="../../resources/css/login.css" />
+    <script type="text/javascript" src="../../resources/js/login.js"></script>
+
+<link href="../../resources/css/wstyle.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="../../resources/css/layui.css"  media="all">
+<!-- <script src="js/common.js"></script> -->
+<script src="../../resources/js/parallax.js"></script>
+<script type="text/javascript" src="../../resources/js/jigsaw.js"></script>
+<script src="../../resources/js/util.js" charset="utf-8"></script>
+<script src="../../resources/layui.js" charset="utf-8"></script>
+<script src="../../resources/js/layui.jquery.cookie.js" charset="utf-8"></script>
+<script src="../../resources/js/login.js" charset="utf-8"></script>
+<script src="../../resources/jquery-3.0.0.js" charset="utf-8"></script>
+<script src="../../resources/jquery-3.0.0.min.js" charset="utf-8"></script>
+<style>
+.contain {
+  width: 310px;
+  margin: 10px auto;
+}
+#msg {
+  width: 100%;
+  line-height: 40px;
+  font-size: 14px;
+  text-align: center;
+}
+
+</style>
+</head>
+
+<body>
+
+
+
+<script type="text/javascript">
+        $(function () {
+            $("#tijiao").click(function () {
+                $.ajax({
+                    type: 'post',
+                    url: "${APP_PATH}/login",
+                    async: true,
+                    cache: false,
+                    data: {
+                        userName: $('#userName').val(),
+                        userPasswd: hex_md5($('#userPasswd').val())
+                    },
+                    success:function (data) {
+                        // alert(data.extend.message);
+                        if(data.code==100){
+                            window.location.href = "${APP_PATH}/html/work.jsp";
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+
+<div class="wrapHeader">
+    <div class="header" style="background-color: #696969">
+        <h1 class="logo"><a href="index.html"><img src="../../resources/img/logo1.png" style="height: 60px;margin-left:200px "/></a></h1>
+        <ul class="nav">
+            <li><a href="./index.html">首页</a></li>
+            <li><a href="work.html">求职/招聘</a></li>
+            <li><a href="javascript:void(0)">投诉/举报</a></li>
+            </ul>
+    </div>
+</div>
+
+     <div class="UnauthHomePage">
+        <div class="register_shadow">
+            <div class="register_shadow_txt"></div>
+        </div>
+    </div>
+    <div class="login_containter">
+        <div class="login_left">
+            <a class="logo" href="javascript:void(0)" style="font-size: 25px;color: #FFFFFF;text-align: center;vertical-align: middle;">西农学生兼职平台</a>
+            <h3><span>登&nbsp;录</span></h3>
+            <div class="login_validate loginAccunt_validate">
+
+            <form th:action="@{/login}" method="post">
+                <div class="input_item">
+                    <i class="icon_un"></i>
+                    <input type="text" id="myname" name="username" value="请输入手机/邮箱/用户名" eg="请输入手机/邮箱/用户名" class="loginName" />
+                    <span class="error_info errorloginName" style="display:none;"></span>
+                </div>
+                <div class="input_item">
+                    <i class="icon_pw"></i>
+                    <span class="password_upTxt" id="mypass">请输入密码</span>
+                    <input type="password" name="password" class="loginPwd" />
+                    <span class="error_info errorloginPwd" style="display:none;"></span>
+                </div>
+                <div class="input_item input_item_yzm" style="display:none;">
+                    <div class="icon_yzm_item">
+                        <i class="icon_yzm"></i>
+                        <input type="text" name="yanzhengma" class="loginyzm" maxlength="4" value="验证码" eg="验证码" id="loginyzm" onblur="onblursLoginYzm($(this))" />
+                    </div>
+                    <div class="yzm_H_item">
+                        <a onclick="changVCode()" class="yzm_H">换</a><img onclick="" id="" class="loginCapt" src="images/GetValidateCode.jpg" />
+                        <span class="errorloginyzm error_info" style="display:none;"></span>
+                    </div>
+                </div>
+                <div class="contain">
+                            <div id="captcha" style="position: relative;"></div>
+                            <div id="msg"></div>
+                            </div>
+                            <script type="text/javascript" src="js/jigsaw.js"></script>
+                            <script type="text/javascript">
+                            jigsaw.init(document.getElementById('captcha'), function () {
+                                document.getElementById('msg').innerHTML = '验证成功！'
+                            })
+                            </script>
+                <div class="input_item">
+                    <input type="checkbox" name="autologin" value="ON" class="loginCheck" id="autologin" checked="checked" style="display: none" /><i class="loginChk checked" name="loginChk"></i><span class="autoTxt">7天自动登录</span>
+                    <a href="javascript:;" class="login_wjmm">还未注册?</a>
+                </div>
+                <div class="input_item">
+                    <input type="submit" class="loginBtn"  id="tijiao" value="登  录" />
+                </div>
+                <div class="input_item f-tac f-pb30">
+                </div>
+
+            </form>
+
+
+            </div>
+           
+        </div>
+       
+    </div>
+</div>
+</body>
+
+</html>
+
+

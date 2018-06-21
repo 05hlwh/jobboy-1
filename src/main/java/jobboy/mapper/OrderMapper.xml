@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jobboy.mapper.OrderMapper">
+  <resultMap id="BaseResultMap" type="jobboy.po.Order">
+    <constructor>
+      <idArg column="order_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="user_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="recur_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="order_time" javaType="java.util.Date" jdbcType="DATE" />
+      <arg column="order_pay_way" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="order_status" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    order_id, user_id, recur_id, order_time, order_pay_way, order_status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from order
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from order
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="jobboy.po.Order">
+    insert into order (order_id, user_id, recur_id, 
+      order_time, order_pay_way, order_status
+      )
+    values (#{orderId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{recurId,jdbcType=INTEGER}, 
+      #{orderTime,jdbcType=DATE}, #{orderPayWay,jdbcType=VARCHAR}, #{orderStatus,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="jobboy.po.Order">
+    insert into order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="recurId != null">
+        recur_id,
+      </if>
+      <if test="orderTime != null">
+        order_time,
+      </if>
+      <if test="orderPayWay != null">
+        order_pay_way,
+      </if>
+      <if test="orderStatus != null">
+        order_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="recurId != null">
+        #{recurId,jdbcType=INTEGER},
+      </if>
+      <if test="orderTime != null">
+        #{orderTime,jdbcType=DATE},
+      </if>
+      <if test="orderPayWay != null">
+        #{orderPayWay,jdbcType=VARCHAR},
+      </if>
+      <if test="orderStatus != null">
+        #{orderStatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="jobboy.po.Order">
+    update order
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="recurId != null">
+        recur_id = #{recurId,jdbcType=INTEGER},
+      </if>
+      <if test="orderTime != null">
+        order_time = #{orderTime,jdbcType=DATE},
+      </if>
+      <if test="orderPayWay != null">
+        order_pay_way = #{orderPayWay,jdbcType=VARCHAR},
+      </if>
+      <if test="orderStatus != null">
+        order_status = #{orderStatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="jobboy.po.Order">
+    update order
+    set user_id = #{userId,jdbcType=INTEGER},
+      recur_id = #{recurId,jdbcType=INTEGER},
+      order_time = #{orderTime,jdbcType=DATE},
+      order_pay_way = #{orderPayWay,jdbcType=VARCHAR},
+      order_status = #{orderStatus,jdbcType=VARCHAR}
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </update>
+</mapper>
