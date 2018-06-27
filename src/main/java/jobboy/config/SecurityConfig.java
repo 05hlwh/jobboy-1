@@ -33,22 +33,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .jdbcAuthentication()
                 .dataSource(datasource)
                 .usersByUsernameQuery(
-                        "select user_name,user_password,enabled from user where user_name=?"
+                        "select name,passwd,enable from usert where name=?"
                 ).authoritiesByUsernameQuery(
-                "select uname,user_role from users where user_name=?"
+                "select name,role from usert where name=?"
         ).passwordEncoder(new BCryptPasswordEncoder());
     }
     @Override
     protected void configure(HttpSecurity http) throws Exception{
         http.addFilterBefore(characterEncodingFilter(), CsrfFilter.class);
         http
-                .formLogin().loginPage("/login")
+                .formLogin().loginPage("/login").failureUrl("/login?error=true")
                 .and()
                 .rememberMe()
                 .tokenValiditySeconds(2419200)
                 .and()
                 .authorizeRequests()
                 .antMatchers("/work").authenticated()
-                .anyRequest().permitAll();
+                .anyRequest().permitAll()
+                .and().requiresChannel().anyRequest().requiresSecure();
     }
+
 }

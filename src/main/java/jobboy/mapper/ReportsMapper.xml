@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="jobboy.mapper.ReportsMapper" >
+  <resultMap id="BaseResultMap" type="jobboy.po.Reports" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="from_id" property="fromId" jdbcType="INTEGER" />
+    <result column="to_id" property="toId" jdbcType="INTEGER" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="detail" property="detail" jdbcType="VARCHAR" />
+    <result column="file_path" property="filePath" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, from_id, to_id, url, type, detail, file_path
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from reports
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from reports
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="jobboy.po.Reports" >
+    insert into reports (id, from_id, to_id, 
+      url, type, detail, 
+      file_path)
+    values (#{id,jdbcType=INTEGER}, #{fromId,jdbcType=INTEGER}, #{toId,jdbcType=INTEGER}, 
+      #{url,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{detail,jdbcType=VARCHAR}, 
+      #{filePath,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="jobboy.po.Reports" >
+    insert into reports
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="fromId != null" >
+        from_id,
+      </if>
+      <if test="toId != null" >
+        to_id,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="detail != null" >
+        detail,
+      </if>
+      <if test="filePath != null" >
+        file_path,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="fromId != null" >
+        #{fromId,jdbcType=INTEGER},
+      </if>
+      <if test="toId != null" >
+        #{toId,jdbcType=INTEGER},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="detail != null" >
+        #{detail,jdbcType=VARCHAR},
+      </if>
+      <if test="filePath != null" >
+        #{filePath,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="jobboy.po.Reports" >
+    update reports
+    <set >
+      <if test="fromId != null" >
+        from_id = #{fromId,jdbcType=INTEGER},
+      </if>
+      <if test="toId != null" >
+        to_id = #{toId,jdbcType=INTEGER},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="detail != null" >
+        detail = #{detail,jdbcType=VARCHAR},
+      </if>
+      <if test="filePath != null" >
+        file_path = #{filePath,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="jobboy.po.Reports" >
+    update reports
+    set from_id = #{fromId,jdbcType=INTEGER},
+      to_id = #{toId,jdbcType=INTEGER},
+      url = #{url,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      detail = #{detail,jdbcType=VARCHAR},
+      file_path = #{filePath,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -7,11 +7,12 @@
     <setting name="logImpl" value="SLF4J"/>
 </settings>
     <mappers>
-        <mapper resource="jobboy/mapper/AnnouncementMapper.xml"/>
-        <mapper resource="jobboy/mapper/Ctf_rpMapper.xml"/>
-        <mapper resource="jobboy/mapper/JobMapper.xml"/>
-        <mapper resource="jobboy/mapper/OrderMapper.xml"/>
-        <mapper resource="jobboy/mapper/TalkMapper.xml"/>
-        <mapper resource="jobboy/mapper/UserMapper.xml"/>
+        <mapper resource="jobboy/mapper/CertifyMapper.xml"/>
+        <mapper resource="jobboy/mapper/CommentsMapper.xml"/>
+        <mapper resource="jobboy/mapper/JobsMapper.xml"/>
+        <mapper resource="jobboy/mapper/MessagesMapper.xml"/>
+        <mapper resource="jobboy/mapper/OrdersMapper.xml"/>
+        <mapper resource="jobboy/mapper/UsertMapper.xml"/>
+        <mapper resource="jobboy/mapper/ReportsMapper.xml"/>
     </mappers>
 </configuration>

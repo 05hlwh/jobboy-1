@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html xmlns:th="http:www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>用户注册</title>
+  <link rel="stylesheet" href="../../resources/register/css/layui.css">
+  <link rel="stylesheet" href="../../resources/register/css/all.css">
+  <link rel="stylesheet" href="../../resources/register/css/CSS.css">
+</head>
+<body  style="min-width:1100px;background-color:#F7F7F7;">
+
+  <!--注 此处先加载layui.js 再加载layui.jquery.cookie.js 最后加载其他模块-->
+  <script src="../../resources/register/js/util.js" charset="utf-8"></script>
+  <script src="../../resources/register/layui.js" charset="utf-8"></script>
+  <script src="../../resources/register/js/layui.jquery.cookie.js" charset="utf-8"></script>
+  <script src="../../resources/register/js/login.js" charset="utf-8"></script>
+  <script src="../../resources/register/js/userInfo.js" charset="utf-8"></script>
+  <script>
+
+</script>
+
+
+<div class="page" >
+
+
+  <div class="headdiv">
+    <div class="divContentCenter"  >
+      <div class="layui-tab layui-tab-brief " lay-filter="docDemoTabBrief" style="align: center; margin-top: 30px;">
+        <ul class="layui-tab-title" >
+          <li href="#" style="font-size:25px; padding-left:40px; padding-right:40px;" class="layui-this"><span class="digit">1</span>注册用户信息</li>
+          <li style="font-size:25px; padding-left:40px; padding-right:40px" ><span span class="digit">2</span>身份认证</li>
+          <li style="font-size:25px; padding-left:40px; padding-right:40px"><span span class="digit">3</span>注册成功</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <div class="bodydiv" style="">
+
+
+<!-- <表单开始的地方> -->
+<form class="layui-form" th:action="@{/register}"  method="post">
+      <div class="layui-form-item" style="width:650px;">
+        <label class="layui-form-label" >*用户名</label>
+        <div class="layui-input-block">
+          <input type="text" name="name" required  lay-verify="required" placeholder="请输入用户名" autocomplete="off" class="layui-input">
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">*密&nbsp;&nbsp;码</label>
+        <div class="layui-input-inline">
+          <input type="password" name="passwd" required lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
+        </div>
+        <div class="layui-form-mid layui-word-aux"></div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">*确认密码</label>
+        <div class="layui-input-inline">
+          <input type="password" name="passWordRight" required lay-verify="required" placeholder="重复输入密码" autocomplete="off" class="layui-input">
+        </div>
+        <div class="layui-form-mid layui-word-aux">密码是否正确</div>
+      </div>
+
+      <div class="layui-form-item" style="width:350px;">
+        <label class="layui-form-label" >*手机号</label>
+        <div class="layui-input-block" >
+          <input type="text" name="mobile" required  lay-verify="required" placeholder="请输入手机号" autocomplete="off" class="layui-input">
+        </div>
+      </div>
+     <div class="layui-form-item">
+        <label class="layui-form-label">*用户类型</label>
+        <div class="layui-input-block">
+          <input type="radio" name="role" value="Stu" title="校内用户">
+          <input type="radio" name="role" value="NoStu" title="校外用户" checked>
+        </div>
+      </div>
+
+      <div class="layui-form-item">
+        <label class="layui-form-label">*性&nbsp;&nbsp;别</label>
+        <div class="layui-input-block">
+          <input type="radio" name="gedener" value="男" title="男">
+          <input type="radio" name="gedener" value="女" title="女" checked>
+        </div>
+      </div>
+      <div class="layui-form-item layui-form-text" style="width:650px;">
+        <label class="layui-form-label">*个人描述</label>
+        <div class="layui-input-block">
+          <textarea name="describle" placeholder="请输入内容" class="layui-textarea"></textarea>
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <div class="layui-input-block" style="margin-top: 30px;">
+        <input type="submit" class="layui-btn" lay-submit lay-filter="formDemo">提交</input>
+            <input type="submit" value="提交submit">
+          <button type="reset" class="layui-btn layui-btn-primary" style="margin-left: 90px;">重置</button>
+        </div>
+      </div>
+
+    </form>
+    <!-- 替换结束的地方-->
+   <div style="float: right; margin-right:300px;"><a href="userinfo2.html" class="layui-btn">下一步</a></div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div style="margin-top: 50px;"> 
+      <fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;" >
+        <legend>温馨提醒</legend>
+      </fieldset>
+      <p class="site-demo-text">西农学生兼职平台，立足打造一个安全的实名的用户环境。请注册用户实名认证，填写准确的个人信息。</p>     
+    </div>
+</form>
+
+<!-- 表单结束的地方 -->
+
+
+<script>
+//Demo
+layui.use('form', function(){
+  var form = layui.form;
+  
+  //监听提交
+  form.on('submit(formDemo)', function(data){
+    layer.msg(JSON.stringify(data.field));
+    return false;
+  });
+});
+</script>
+
+</div>
+</div>
+
+
+</body>
+</html>

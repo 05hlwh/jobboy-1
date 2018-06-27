@@ -1,0 +1,48 @@
+.page
+{
+	color: #3c3c3c;
+}
+.divContentCenter{
+    width:990px;
+    height:48px;
+    margin:0 auto;
+    border-bottom: 2px solid #e6e6e6;
+    position: relative;
+}
+.daohangFont{
+	font-size: 68px;
+}
+.digit{
+	width:30px;
+	height:30px;
+	line-height:30px;
+	border-radius:15px;
+	font-size:24px;
+	background:#f00;
+	color:#ff; 
+	margin-right:10px;
+}
+.content{
+	padding: 50px 0;
+	background-color: gray;
+    display: block;
+}
+form {
+    display: block;
+    margin-top: 0em;
+    }
+div {
+    display: block;
+}
+.headdiv{
+	width: 100%;
+	height: 30%;
+	padding: 50px 0;
+}
+.bodydiv{
+	width:990px;
+    height:700px;
+    margin:0 auto;
+    padding-bottom: 200px;
+    position: relative;
+}

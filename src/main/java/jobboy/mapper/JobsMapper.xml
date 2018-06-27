@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="jobboy.mapper.JobsMapper" >
+  <resultMap id="BaseResultMap" type="jobboy.po.Jobs" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="from_id" property="fromId" jdbcType="INTEGER" />
+    <result column="creat_time" property="creatTime" jdbcType="DATE" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="jb_time" property="jbTime" jdbcType="VARCHAR" />
+    <result column="salary_start" property="salaryStart" jdbcType="VARCHAR" />
+    <result column="salary_end" property="salaryEnd" jdbcType="VARCHAR" />
+    <result column="detail" property="detail" jdbcType="VARCHAR" />
+    <result column="adress" property="adress" jdbcType="VARCHAR" />
+    <result column="gender" property="gender" jdbcType="VARCHAR" />
+    <result column="need_num" property="needNum" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, from_id, creat_time, title, type, jb_time, salary_start, salary_end, detail, 
+    adress, gender, need_num
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from jobs
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from jobs
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="jobboy.po.Jobs" >
+    insert into jobs (id, from_id, creat_time, 
+      title, type, jb_time, 
+      salary_start, salary_end, detail, 
+      adress, gender, need_num
+      )
+    values (#{id,jdbcType=INTEGER}, #{fromId,jdbcType=INTEGER}, #{creatTime,jdbcType=DATE}, 
+      #{title,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{jbTime,jdbcType=VARCHAR}, 
+      #{salaryStart,jdbcType=VARCHAR}, #{salaryEnd,jdbcType=VARCHAR}, #{detail,jdbcType=VARCHAR}, 
+      #{adress,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR}, #{needNum,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="jobboy.po.Jobs" >
+    insert into jobs
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="fromId != null" >
+        from_id,
+      </if>
+      <if test="creatTime != null" >
+        creat_time,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="jbTime != null" >
+        jb_time,
+      </if>
+      <if test="salaryStart != null" >
+        salary_start,
+      </if>
+      <if test="salaryEnd != null" >
+        salary_end,
+      </if>
+      <if test="detail != null" >
+        detail,
+      </if>
+      <if test="adress != null" >
+        adress,
+      </if>
+      <if test="gender != null" >
+        gender,
+      </if>
+      <if test="needNum != null" >
+        need_num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="fromId != null" >
+        #{fromId,jdbcType=INTEGER},
+      </if>
+      <if test="creatTime != null" >
+        #{creatTime,jdbcType=DATE},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="jbTime != null" >
+        #{jbTime,jdbcType=VARCHAR},
+      </if>
+      <if test="salaryStart != null" >
+        #{salaryStart,jdbcType=VARCHAR},
+      </if>
+      <if test="salaryEnd != null" >
+        #{salaryEnd,jdbcType=VARCHAR},
+      </if>
+      <if test="detail != null" >
+        #{detail,jdbcType=VARCHAR},
+      </if>
+      <if test="adress != null" >
+        #{adress,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="needNum != null" >
+        #{needNum,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="jobboy.po.Jobs" >
+    update jobs
+    <set >
+      <if test="fromId != null" >
+        from_id = #{fromId,jdbcType=INTEGER},
+      </if>
+      <if test="creatTime != null" >
+        creat_time = #{creatTime,jdbcType=DATE},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="jbTime != null" >
+        jb_time = #{jbTime,jdbcType=VARCHAR},
+      </if>
+      <if test="salaryStart != null" >
+        salary_start = #{salaryStart,jdbcType=VARCHAR},
+      </if>
+      <if test="salaryEnd != null" >
+        salary_end = #{salaryEnd,jdbcType=VARCHAR},
+      </if>
+      <if test="detail != null" >
+        detail = #{detail,jdbcType=VARCHAR},
+      </if>
+      <if test="adress != null" >
+        adress = #{adress,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        gender = #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="needNum != null" >
+        need_num = #{needNum,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="jobboy.po.Jobs" >
+    update jobs
+    set from_id = #{fromId,jdbcType=INTEGER},
+      creat_time = #{creatTime,jdbcType=DATE},
+      title = #{title,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      jb_time = #{jbTime,jdbcType=VARCHAR},
+      salary_start = #{salaryStart,jdbcType=VARCHAR},
+      salary_end = #{salaryEnd,jdbcType=VARCHAR},
+      detail = #{detail,jdbcType=VARCHAR},
+      adress = #{adress,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=VARCHAR},
+      need_num = #{needNum,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

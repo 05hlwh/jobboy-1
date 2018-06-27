@@ -68,10 +68,10 @@
 
 <div class="wrapHeader">
     <div class="header" style="background-color: #696969">
-        <h1 class="logo"><a href="index.html"><img src="../../resources/img/logo1.png" style="height: 60px;margin-left:200px "/></a></h1>
+        <h1 class="logo"><a href="/"><img src="../../resources/img/logo1.png" style="height: 60px;margin-left:200px "/></a></h1>
         <ul class="nav">
-            <li><a href="./index.html">首页</a></li>
-            <li><a href="work.html">求职/招聘</a></li>
+            <li><a href="/">首页</a></li>
+            <li><a href="/work">求职/招聘</a></li>
             <li><a href="javascript:void(0)">投诉/举报</a></li>
             </ul>
     </div>
@@ -87,7 +87,7 @@
             <a class="logo" href="javascript:void(0)" style="font-size: 25px;color: #FFFFFF;text-align: center;vertical-align: middle;">西农学生兼职平台</a>
             <h3><span>登&nbsp;录</span></h3>
             <div class="login_validate loginAccunt_validate">
-
+                <div><span th:if="${param.error}" th:text="${session.SPRING_SECURITY_LAST_EXCEPTION.message}"/></div>
             <form th:action="@{/login}" method="post">
                 <div class="input_item">
                     <i class="icon_un"></i>
@@ -122,7 +122,7 @@
                             </script>
                 <div class="input_item">
                     <input type="checkbox" name="autologin" value="ON" class="loginCheck" id="autologin" checked="checked" style="display: none" /><i class="loginChk checked" name="loginChk"></i><span class="autoTxt">7天自动登录</span>
-                    <a href="javascript:;" class="login_wjmm">还未注册?</a>
+                    <a href="/register" class="login_wjmm">还未注册?</a>
                 </div>
                 <div class="input_item">
                     <input type="submit" class="loginBtn"  id="tijiao" value="登  录" />

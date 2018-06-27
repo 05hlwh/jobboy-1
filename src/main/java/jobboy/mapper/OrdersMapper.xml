@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="jobboy.mapper.OrdersMapper" >
+  <resultMap id="BaseResultMap" type="jobboy.po.Orders" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="emp_id" property="empId" jdbcType="INTEGER" />
+    <result column="boss_id" property="bossId" jdbcType="INTEGER" />
+    <result column="job_id" property="jobId" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="DATE" />
+    <result column="payway" property="payway" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, emp_id, boss_id, job_id, create_time, payway, status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from orders
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from orders
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="jobboy.po.Orders" >
+    insert into orders (id, emp_id, boss_id, 
+      job_id, create_time, payway, 
+      status)
+    values (#{id,jdbcType=INTEGER}, #{empId,jdbcType=INTEGER}, #{bossId,jdbcType=INTEGER}, 
+      #{jobId,jdbcType=INTEGER}, #{createTime,jdbcType=DATE}, #{payway,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="jobboy.po.Orders" >
+    insert into orders
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="empId != null" >
+        emp_id,
+      </if>
+      <if test="bossId != null" >
+        boss_id,
+      </if>
+      <if test="jobId != null" >
+        job_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="payway != null" >
+        payway,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="empId != null" >
+        #{empId,jdbcType=INTEGER},
+      </if>
+      <if test="bossId != null" >
+        #{bossId,jdbcType=INTEGER},
+      </if>
+      <if test="jobId != null" >
+        #{jobId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=DATE},
+      </if>
+      <if test="payway != null" >
+        #{payway,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="jobboy.po.Orders" >
+    update orders
+    <set >
+      <if test="empId != null" >
+        emp_id = #{empId,jdbcType=INTEGER},
+      </if>
+      <if test="bossId != null" >
+        boss_id = #{bossId,jdbcType=INTEGER},
+      </if>
+      <if test="jobId != null" >
+        job_id = #{jobId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=DATE},
+      </if>
+      <if test="payway != null" >
+        payway = #{payway,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="jobboy.po.Orders" >
+    update orders
+    set emp_id = #{empId,jdbcType=INTEGER},
+      boss_id = #{bossId,jdbcType=INTEGER},
+      job_id = #{jobId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=DATE},
+      payway = #{payway,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
